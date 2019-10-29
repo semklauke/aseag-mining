@@ -30,7 +30,7 @@
 &emsp;&nbsp;length of array `resultList` (see below)<br /><br />
 &emsp;**`maxJourneyDurationInS`: _int_** <br /><br />
 &emsp;**`resultList`:** []<br />
-&emsp;&nbsp;list of **journey objects**. See [journey object](#journey-object)<br /><br />
+&emsp;&nbsp;list of **journey objects**. See [journey object](#-journey-object-)<br /><br />
 
 ### { Journey Object }
 &emsp;**`type`: _string_** <br />
@@ -60,15 +60,15 @@
 &emsp;&emsp;&emsp;**`total`: _int_** <br />
 &emsp;}<br /><br />
 &emsp;**`startLocation`: _location object_** **{** ... **}** <br />
-&emsp;&nbsp;A **location object**. See [location object](#location-object)<br /><br />
+&emsp;&nbsp;A **location object**. See [location object](#-location-object-)<br /><br />
 &emsp;**`endLocation`: _location object_** **{** ... **}** <br />
-&emsp;&nbsp;A **location object**. See [location object](#location-object)<br /><br />
+&emsp;&nbsp;A **location object**. See [location object](#-location-object-)<br /><br />
 &emsp;**`elementCount`: _int_** <br />
 &emsp;&nbsp;number of elements in `elementList` which contains all bus lines<br /><br />
 &emsp;**`elementList`:** []<br />
 &emsp;&nbsp; Contains all parts (bus drives, walks, changes of buses) of the jourey.<br />
 &emsp;&nbsp; Each element is a **trip object** of the 3 types: **PublicTransportTrip**, **IndividualTrip**, **TripChange**<br />
-&emsp;&nbsp; See [trip object](#trip-object)<br /><br />
+&emsp;&nbsp; See [trip object](#-trip-object-)<br /><br />
 
 ### { Trip Object }
 &emsp;Describes a part of a journey.<br />
@@ -82,9 +82,9 @@
 &emsp;&emsp;**`uuid`: _string_** <br />
 &emsp;&emsp;&nbsp;uuid of joureny + trip. See [uuids](#uuids) <br /><br />
 &emsp;&emsp;**`start`: _prediction object_ {** .. **}** <br />
-&emsp;&emsp;&nbsp;A **prediction object**. See [prediction object](#prediction-object)<br /><br />
+&emsp;&emsp;&nbsp;A **prediction object**. See [prediction object](#-prediction-object-)<br /><br />
 &emsp;&emsp;**`end`: _prediction object_ {** .. **}** <br />
-&emsp;&emsp;&nbsp;A **prediction object**. See [prediction object](#prediction-object)<br /><br />
+&emsp;&emsp;&nbsp;A **prediction object**. See [prediction object](#-prediction-object-)<br /><br />
 &emsp;&emsp;**`durationInS`: _int_** <br /><br />
 &emsp;&emsp;**`lengthInM`: _int_** <br />
 &emsp;&emsp;&nbsp;Seems to be always 0 for **PublicTransportTrip** <br /><br />
@@ -110,9 +110,9 @@
 &emsp;&emsp;**`uuid`: _string_** <br />
 &emsp;&emsp;&nbsp;uuid of joureny + trip. See [uuids](#uuids) <br /><br />
 &emsp;&emsp;**`start`: _prediction object_ {** .. **}** <br />
-&emsp;&emsp;&nbsp;A **prediction object**. See [prediction object](#prediction-object)<br /><br />
+&emsp;&emsp;&nbsp;A **prediction object**. See [prediction object](#-prediction-object-)<br /><br />
 &emsp;&emsp;**`end`: _prediction object_ {** .. **}** <br />
-&emsp;&emsp;&nbsp;A **prediction object**. See [prediction object](#prediction-object)<br /><br />
+&emsp;&emsp;&nbsp;A **prediction object**. See [prediction object](#-prediction-object-)<br /><br />
 &emsp;&emsp;**`durationInS`: _int_** <br /><br />
 &emsp;&emsp;**`lengthInM`: _int_** <br /><br />
 &emsp;&emsp;**`messageList`: []** <br />
@@ -133,7 +133,7 @@
 &emsp;**`type`: _string_** <br />
 &emsp;&nbsp;I've only seen "Prediction" <br /><br />
 &emsp;**`location`: _location object_** **{** ... **}** <br />
-&emsp;&nbsp;A **location object**. See [location object](#location-object)<br /><br />
+&emsp;&nbsp;A **location object**. See [location object](#-location-object-)<br /><br />
 &emsp;**`visitNumber`: _int_** <br />
 &emsp;&nbsp;Don't know what this is <br /><br />
 &emsp;**`estimatedArrivalInUnixEpochMillis`: _int_** unix timestamp in ms <br /><br />
