@@ -17,145 +17,131 @@
 
 
 
-### Return object
+### JSON Response
 
 
 **`type`: _string_** <br />
- should be "JourneyResults" <br /><br />
+&nbsp;should be "JourneyResults" <br /><br />
 **`searchQuery`:** {<br />
 &emsp;&emsp;**`queryString`: _string_** <br />
 &emsp;&emsp; full HTTP query string (with defaults)<br />
 }<br /><br />
 **`resultCount`: _int_** <br />
- length of array `resultList` (see below)<br /><br />
+&nbsp;length of array `resultList` (see below)<br /><br />
 **`maxJourneyDurationInS`: _int_** <br /><br />
-**`resultList`:** [<br />
-&emsp;{<br />
-&emsp;&emsp;**`type`: _string_** <br />
-&emsp;&emsp; should be "Journey"<br /><br />
-&emsp;&emsp;**`mode`: _string_** <br />
-&emsp;&emsp; I've only seen "Compact"<br /><br />
-&emsp;&emsp;**`uuid`: _string_** <br />
-&emsp;&emsp; list of all uuid's for this journey (only one if you dont have change buses)<br />
-&emsp;&emsp; For structure of uuid's look at [uuid.md](./uuid.md)<br /><br />
-&emsp;&emsp;**`status`: _string_** <br >
-&emsp;&emsp; known values: ["OK", ]<br /><br />
-&emsp;&emsp;**`messageList`: []** <br >
-&emsp;&emsp; I've only seen this array empty<br /><br />
-&emsp;&emsp;**`queryString`: _string_** <br >
-&emsp;&emsp; same `queryString` as above<br /><br />
-&emsp;&emsp;**`startTimeInUnixEpochMillis`: _int_** <br /><br />
-&emsp;&emsp;**`endTimeInUnixEpochMillis`: _int_** <br /><br />
-&emsp;&emsp;**`currentServerTimeInUnixEpochMillis `: _int_** <br /><br />
-&emsp;&emsp;**`durationsInS`: {** <br />
-&emsp;&emsp;&emsp;&emsp;**`bus`: _int_** <br /><br />
-&emsp;&emsp;&emsp;&emsp;**`walk`: _int_** <br /><br />
-&emsp;&emsp;&emsp;&emsp;**`total`: _int_** <br />
-&emsp;&emsp;} <br /><br />
-&emsp;&emsp;**`distancesInM`: {** <br />
-&emsp;&emsp;&emsp;&emsp;**`bus`: _int_** <br /><br />
-&emsp;&emsp;&emsp;&emsp;**`walk`: _int_** <br /><br />
-&emsp;&emsp;&emsp;&emsp;**`total`: _int_** <br />
-&emsp;&emsp;} <br /><br />
-&emsp;&emsp;**`startLocation`: _location object_** [location.md](./location.md) **{** ... **}** <br /><br />
-&emsp;&emsp;**`endLocation`: _location object_** [location.md](./location.md) **{** ... **}** <br /><br />
-&emsp;&emsp;**`elementCount`: _int_** <br />
-&emsp;&emsp; number of elements in `elementList` which contains all bus lines<br /><br />
-&emsp;&emsp;**`elementList`:** 3 types: **PublicTransportTrip**, **TripChange**, **IndividualTrip** **[** <br />
-&emsp;&emsp;&emsp;{ <br />
-&emsp;&emsp;&emsp;&emsp;**`type`:** **"PublicTransportTrip"** <br /><br />
-&emsp;&emsp;&emsp;&emsp;**`modalType`:** **"bus"** <br /><br />
-&emsp;&emsp;&emsp;&emsp;**`uuid`: _string_** <br /> 
-&emsp;&emsp;&emsp;&emsp; see [uuid.md](./uuid.md) <br /><br />
-&emsp;&emsp;&emsp;&emsp;**`uuid`: _string_** <br />
-&emsp;&emsp;&emsp;&emsp; uuid of joureny. See [uuid.md](./uuid.md) <br /><br />
-&emsp;&emsp;&emsp;&emsp;**`start`: _prediction object_ {** <br />
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;**`type`: _string_** <br />
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; I've only seen "Prediction" <br /><br />
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;**`location`: _location object_** [location.md](./location.md) **{** ... **}** <br /><br />
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;**`visitNumber`: _int_** <br />
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Don't know what this is <br /><br />
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;**`estimatedArrivalInUnixEpochMillis`: _int_** unix timestamp in ms <br /><br />
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;**`estimatedDepartureInUnixEpochMillis`: _int_** unix timestamp in ms <br /><br />
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;**`aimedArrivalInUnixEpochMillis`: _int_** unix timestamp in ms <br /><br />
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;**`aimedDepartureInUnixEpochMillis`: _int_** unix timestamp in ms <br /><br />
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;**`scheduledArrivalInUnixEpochMillis`: _int_** unix timestamp in ms <br /><br />
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;**`scheduledDepartureInUnixEpochMillis`: _int_** unix timestamp in ms <br />
-&emsp;&emsp;&emsp;&emsp;} <br /><br />
-&emsp;&emsp;&emsp;&emsp;**`end`: _prediction object_ {** <br />
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;**`type`: _string_** <br /><br />
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;**`location`: _location object_** [location.md](./location.md) **{** ... **}** <br /><br />
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;**`visitNumber`: _int_** <br /><br />
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;**`estimatedArrivalInUnixEpochMillis`: _int_** unix timestamp in ms <br /><br />
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;**`estimatedDepartureInUnixEpochMillis`: _int_** unix timestamp in ms <br /><br />
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;**`aimedArrivalInUnixEpochMillis`: _int_** unix timestamp in ms <br /><br />
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;**`aimedDepartureInUnixEpochMillis`: _int_** unix timestamp in ms <br /><br />
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;**`scheduledArrivalInUnixEpochMillis`: _int_** unix timestamp in ms <br /><br />
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;**`scheduledDepartureInUnixEpochMillis`: _int_** unix timestamp in ms <br />
-&emsp;&emsp;&emsp;&emsp;} <br /><br />
-&emsp;&emsp;&emsp;&emsp;**`durationInS`: _int_** <br /><br />
-&emsp;&emsp;&emsp;&emsp;**`lengthInM`: _int_** <br />
-&emsp;&emsp;&emsp;&emsp; Seems to be always 0 for **PublicTransportTrip** (so non walking trip) <br /><br />
-&emsp;&emsp;&emsp;&emsp;**`messageList`: []** <br />
-&emsp;&emsp;&emsp;&emsp; I've only seen this array empty<br /><br />
-&emsp;&emsp;&emsp;&emsp;**`tripId`: _int_** <br />
-&emsp;&emsp;&emsp;&emsp; uniqe number from uuid. See [uuid.md](./uuid.md)<br /><br />
-&emsp;&emsp;&emsp;&emsp;**`destinationName`: _string_** <br /><br />
-&emsp;&emsp;&emsp;&emsp;**`destinationText`: _string_** <br /><br />
-&emsp;&emsp;&emsp;&emsp;**`isSaveConnection`: _bool_** <br /><br />
-&emsp;&emsp;&emsp;&emsp;**`lineId`: _int_** <br /><br />
-&emsp;&emsp;&emsp;&emsp;**`lineName`: _string_** <br />
-&emsp;&emsp;&emsp;&emsp; often same as `lineId` <br /><br />
-&emsp;&emsp;&emsp;&emsp;**`vehicleId`: _int_** <br /><br />
-&emsp;&emsp;&emsp;&emsp;**`isLowFloorVehicle`: _bool_** <br /><br />
-&emsp;&emsp;&emsp;&emsp;**`isAccessible`: _bool_** <br /><br />
-&emsp;&emsp;&emsp;&emsp;**`haltCount`: _int_** <br /><br />
-&emsp;&emsp;&emsp;} <br /><br />
-&emsp;&emsp;&emsp;{ <br />
-&emsp;&emsp;&emsp;&emsp;**`type`:** **"IndividualTrip"** <br /><br />
-&emsp;&emsp;&emsp;&emsp;**`modalType`:** **"walk"** <br /><br />
-&emsp;&emsp;&emsp;&emsp;**`uuid`: _string_** <br /> 
-&emsp;&emsp;&emsp;&emsp; see [uuid.md](./uuid.md) <br /><br />
-&emsp;&emsp;&emsp;&emsp;**`uuid`: _string_** <br />
-&emsp;&emsp;&emsp;&emsp; uuid of joureny. See [uuid.md](./uuid.md) <br /><br />
-&emsp;&emsp;&emsp;&emsp;**`start`: _prediction object_ {** <br />
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;**`type`: _string_** <br />
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; I've only seen "Prediction" <br /><br />
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;**`location`: _location object_** [location.md](./location.md) **{** ... **}** <br /><br />
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;**`visitNumber`: _int_** <br />
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Don't know what this is <br /><br />
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;**`estimatedArrivalInUnixEpochMillis`: _int_** unix timestamp in ms <br /><br />
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;**`estimatedDepartureInUnixEpochMillis`: _int_** unix timestamp in ms <br /><br />
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;**`aimedArrivalInUnixEpochMillis`: _int_** unix timestamp in ms <br /><br />
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;**`aimedDepartureInUnixEpochMillis`: _int_** unix timestamp in ms <br /><br />
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;**`scheduledArrivalInUnixEpochMillis`: _int_** unix timestamp in ms <br /><br />
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;**`scheduledDepartureInUnixEpochMillis`: _int_** unix timestamp in ms <br />
-&emsp;&emsp;&emsp;&emsp;} <br /><br />
-&emsp;&emsp;&emsp;&emsp;**`end`: _prediction object_ {** <br />
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;**`type`: _string_** <br /><br />
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;**`location`: _location object_** [location.md](./location.md) **{** ... **}** <br /><br />
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;**`visitNumber`: _int_** <br /><br />
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;**`estimatedArrivalInUnixEpochMillis`: _int_** unix timestamp in ms <br /><br />
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;**`estimatedDepartureInUnixEpochMillis`: _int_** unix timestamp in ms <br /><br />
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;**`aimedArrivalInUnixEpochMillis`: _int_** unix timestamp in ms <br /><br />
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;**`aimedDepartureInUnixEpochMillis`: _int_** unix timestamp in ms <br /><br />
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;**`scheduledArrivalInUnixEpochMillis`: _int_** unix timestamp in ms <br /><br />
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;**`scheduledDepartureInUnixEpochMillis`: _int_** unix timestamp in ms <br />
-&emsp;&emsp;&emsp;&emsp;} <br /><br />
-&emsp;&emsp;&emsp;&emsp;**`durationInS`: _int_** <br /><br />
-&emsp;&emsp;&emsp;&emsp;**`lengthInM`: _int_** <br /><br />
-&emsp;&emsp;&emsp;&emsp;**`messageList`: []** <br />
-&emsp;&emsp;&emsp;&emsp; I've only seen this array empty<br /><br />
-&emsp;&emsp;&emsp;&emsp;**`isAccessible`: _bool_** <br /><br />
-&emsp;&emsp;&emsp;} <br /><br />
-&emsp;&emsp;&emsp;{ <br />
-&emsp;&emsp;&emsp;&emsp;**`type`:** **"TripChange"** <br /><br />
-&emsp;&emsp;&emsp;&emsp;**`durationInS`: _int_** <br />
-&emsp;&emsp;&emsp;&emsp; Time to wait between buses <br /><br />
-&emsp;&emsp;&emsp;&emsp;**`source`: _string_** <br />
-&emsp;&emsp;&emsp;&emsp; uuid of incoming/prev. trip object. See [uuid.md](./uuid.md) <br /><br />
-&emsp;&emsp;&emsp;&emsp;**`target`: _string_** <br />
-&emsp;&emsp;&emsp;&emsp; uuid of outgoing/next trip object. See [uuid.md](./uuid.md) <br /><br />
-&emsp;&emsp;&emsp;} <br /><br />
-&emsp;}<br /><br />
-]<br /><br />
+**`resultList`:** []<br />
+&nbsp;list of **journey objects**. See [journey object](#journey-object)<br /><br />
+
+#### journey object
+**`type`: _string_** <br />
+&nbsp;should be "Journey"<br /><br />
+**`mode`: _string_** <br />
+&nbsp;I've only seen "Compact"<br /><br />
+**`uuid`: _string_** <br />
+&nbsp;list of all uuid's for this journey (only one if you dont have change buses)<br />
+&nbsp;For structure of uuid's look at [uuids](#uuids)<br /><br />
+**`status`: _string_** <br >
+&nbsp;known values: ["OK", ]<br /><br />
+**`messageList`: []** <br >
+&nbsp;I've only seen this array empty<br /><br />
+**`queryString`: _string_** <br >
+&nbsp;same `queryString` as above<br /><br />
+**`startTimeInUnixEpochMillis`: _int_** <br /><br />
+**`endTimeInUnixEpochMillis`: _int_** <br /><br />
+**`currentServerTimeInUnixEpochMillis `: _int_** <br /><br />
+**`durationsInS`: {** <br />
+&emsp;&emsp;**`bus`: _int_** <br />
+&emsp;&emsp;**`walk`: _int_** <br />
+&emsp;&emsp;**`total`: _int_** <br />
+}<br /><br />
+&emsp;**`distancesInM`: {** <br />
+&emsp;&emsp;**`bus`: _int_** <br />
+&emsp;&emsp;**`walk`: _int_** <br />
+&emsp;&emsp;**`total`: _int_** <br />
+}<br /><br />
+**`startLocation`: _location object_** **{** ... **}** <br />
+&nbsp;A **location object**. See [location object](#location-object)<br /><br />
+**`endLocation`: _location object_** **{** ... **}** <br />
+&nbsp;A **location object**. See [location object](#location-object)<br /><br />
+**`elementCount`: _int_** <br />
+&nbsp;number of elements in `elementList` which contains all bus lines<br /><br />
+**`elementList`:** []<br />
+&nbsp; Contains all parts (bus drives, walks, changes of buses) of the jourey.<br />
+&nbsp; Each element is a **trip object** of the 3 types: **PublicTransportTrip**, **IndividualTrip**, **TripChange**<br />
+&nbsp; See [trip object](#trip-object)<br /><br />
+
+#### trip object
+Describes a part of a journey.<br />
+- ["PublicTransportTrip"](#publictransporttrip) describes a bus drive on one line.
+- ["IndividualTrip"](#individualtrip) describes walking. For example from one bus stop to another.
+- ["TripChange"](#tripchange) describes the changing the bus line at a bus station **?**
+
+##### PublicTransportTrip
+**`type`:** **"PublicTransportTrip"** <br /><br />
+**`modalType`:** **"bus"** <br /><br />
+**`uuid`: _string_** <br />
+&nbsp;uuid of joureny + trip. See [uuids](#uuids) <br /><br />
+**`start`: _prediction object_ {** .. **}** <br />
+&nbsp;A **prediction object**. See [prediction object](#prediction-object)<br /><br />
+**`end`: _prediction object_ {** .. **}** <br />
+&nbsp;A **prediction object**. See [prediction object](#prediction-object)<br /><br />
+**`durationInS`: _int_** <br /><br />
+**`lengthInM`: _int_** <br />
+&nbsp;Seems to be always 0 for **PublicTransportTrip** <br /><br />
+**`messageList`: []** <br />
+&nbsp;I've only seen this array empty<br /><br />
+**`tripId`: _int_** <br />
+&nbsp;uniqe number from uuid. See [uuids](#uuids)<br /><br />
+**`destinationName`: _string_** <br /><br />
+**`destinationText`: _string_** <br />
+&nbsp;Often the same as `destinationName`<br /><br />
+**`isSaveConnection`: _bool_** <br /><br />
+**`lineId`: _int_** <br /><br />
+**`lineName`: _string_** <br />
+&nbsp;often same as `lineId` <br /><br />
+**`vehicleId`: _int_** <br /><br />
+**`isLowFloorVehicle`: _bool_** <br /><br />
+**`isAccessible`: _bool_** <br /><br />
+**`haltCount`: _int_** <br /><br />
+
+##### IndividualTrip
+
+**`type`:** **"IndividualTrip"** <br /><br />
+**`modalType`:** **"walk"** <br /><br />
+**`uuid`: _string_** <br />
+&nbsp;uuid of joureny + trip. See [uuids](#uuids) <br /><br />
+**`start`: _prediction object_ {** .. **}** <br />
+&nbsp;A **prediction object**. See [prediction object](#prediction-object)<br /><br />
+**`end`: _prediction object_ {** .. **}** <br />
+&nbsp;A **prediction object**. See [prediction object](#prediction-object)<br /><br />
+**`durationInS`: _int_** <br /><br />
+**`lengthInM`: _int_** <br /><br />
+**`messageList`: []** <br />
+&nbsp;I've only seen this array empty<br /><br />
+**`isAccessible`: _bool_** <br /><br />
+
+
+##### TripChange
+
+**`type`:** **"TripChange"** <br /><br />
+**`durationInS`: _int_** <br />
+&nbsp;Time to wait between buses. I guess :D <br /><br />
+**`source`: _string_** <br />
+&nbsp;uuid of incoming/prev. **trip object**. See [uuids](#uuids) <br /><br />
+**`target`: _string_** <br />
+&nbsp;uuid of outgoing/next **trip object**. See [uuids](#uuids) <br /><br />
+
+#### Prediction Object
+
+**`type`: _string_** <br />
+&nbsp;I've only seen "Prediction" <br /><br />
+**`location`: _location object_** **{** ... **}** <br />
+&nbsp;A **location object**. See [location object](#location-object)<br /><br />
+**`visitNumber`: _int_** <br />
+&nbsp;Don't know what this is <br /><br />
+**`estimatedArrivalInUnixEpochMillis`: _int_** unix timestamp in ms <br /><br />
+**`estimatedDepartureInUnixEpochMillis`: _int_** unix timestamp in ms <br /><br />
+**`aimedArrivalInUnixEpochMillis`: _int_** unix timestamp in ms <br /><br />
+**`aimedDepartureInUnixEpochMillis`: _int_** unix timestamp in ms <br /><br />
+**`scheduledArrivalInUnixEpochMillis`: _int_** unix timestamp in ms <br /><br />
+**`scheduledDepartureInUnixEpochMillis`: _int_** unix timestamp in ms <br />
