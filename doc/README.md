@@ -1,3 +1,40 @@
+# location
+> http://ivu.aseag.de/interfaces/ura/location?
+
+## Query parameters
+
+| key            | type                     | required | default | info |
+|:---------------|:-------------------------|:--------:|:-------:|:-----|
+| searchString   | string                   | ✓        | -       | can be \* for wildcard result |
+| maxResults     | number (int)             | ✖        | 10      | |
+| searchTypes    | string                   | ✖        | STOPPOINT | possible values: [STOPPOINT, ] |
+
+## JSON Response
+
+&emsp;**`type`: _string_** <br />
+&emsp;&nbsp;should be "LocationResults" <br /><br />
+&emsp;**`maxResult`: _int_** <br />
+&emsp;equal to query parameter *maxResults*<br /><br />
+&emsp;**`currentServerTimeInUnixEpochMillis`: _int_** <br /><br />
+&emsp;**`resultCount`: _int_** <br />
+&emsp;&nbsp;length of array `resultList` (see below)<br /><br />
+&emsp;**`resultList`:** []<br />
+&emsp;&nbsp;list of **location objects**. See [location object](#-location-object-)<br />
+&emsp;&nbsp;Output order seems to be alphalbetical to `stopPointName` from the **location object**<br /><br />
+
+### { location object}
+
+&emsp;**`type`: _string_** <br />
+&emsp;&nbsp;I've only seen this value: [StopPoint, ] <br /><br />
+&emsp;**`stopPointName`: _string_** <br />
+&emsp;&nbsp;query parameter *searchString* searches in this parameters.<br /><br />
+&emsp;**`stopPointId`: _string_** <br />
+&emsp;&nbsp;In the range: [100000, 999999]<br />
+&emsp;&nbsp;The first digit (so the 10e5 value) seems to discrete between diferent. See [map.html](./map.html)<br />
+&emsp;&nbsp;Total of number of stations is ~1200</br ><br />
+&emsp;**`latitude`: _float_** <br /><br />
+&emsp;**`longitude`: _float_** <br /><br />
+
 # journey
 > http://ivu.aseag.de/interfaces/ura/journey?
 
@@ -5,9 +42,9 @@
 ## Query parameters
 
 | key            | type                     | required | default | info |
-|:---------------|:-------------------------|:---------|:--------|:-----|
-| startStopId    | number (int)             | ✓        | -       | can be obtained by. e.g **instance** |
-| endStopId      | number (int)             | ✓        | -       | an be obtained by. e.g **instance**  |
+|:---------------|:-------------------------|:--------:|:-------:|:-----|
+| startStopId    | number (int)             | ✓        | -       | from **location object**. Can be obtained by. e.g by [location](#location) |
+| endStopId      | number (int)             | ✓        | -       | from **location object**. Can be obtained by. e.g by [location](#location) |
 | departureTime  | number (timestamp)       | ✓        | -       | unix timestamp in *millisecounds !!!* So timestamp * 1000 |
 | arrivalTime    | number (timestamp)       | ✖ / ✓    | -       | Can be used istead of depatrureTime |
 | minTimeChanges | number (int)             | ✖        | 2       | not sure of this has really an effect. Couldn't find a difference between default value and 0 |
@@ -19,6 +56,9 @@
 
 ## JSON Response
 
+ToDo
+- [ ]  startGeoCoordinates
+- [ ]  endGeoCoordinates
 
 &emsp;**`type`: _string_** <br />
 &emsp;&nbsp;should be "JourneyResults" <br /><br />
@@ -123,7 +163,7 @@
 #### &emsp;{TripChange}
 &emsp;&emsp;**`type`:** **"TripChange"** <br /><br />
 &emsp;&emsp;**`durationInS`: _int_** <br />
-&emsp;&emsp;&nbsp;Time to wait between buses. I guess :D <br /><br />
+&emsp;&emsp;&nbsp;Time to wait between buses. I guess \:D <br /><br />
 &emsp;&emsp;**`source`: _string_** <br />
 &emsp;&emsp;&nbsp;uuid of incoming/prev. **trip object**. See [uuids](#uuids) <br /><br />
 &emsp;&emsp;**`target`: _string_** <br />
@@ -142,3 +182,7 @@
 &emsp;**`aimedDepartureInUnixEpochMillis`: _int_** unix timestamp in ms <br /><br />
 &emsp;**`scheduledArrivalInUnixEpochMillis`: _int_** unix timestamp in ms <br /><br />
 &emsp;**`scheduledDepartureInUnixEpochMillis`: _int_** unix timestamp in ms <br />
+
+# instant
+
+> http://ivu.aseag.de/interfaces/ura/instant_V2?
